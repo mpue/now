@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		422DAEA820BC6B2900D972BE /* chapter in Resources */ = {isa = PBXBuildFile; fileRef = 422DAEA720BC6B2900D972BE /* chapter */; };
+		422DAEAA20BC6E0900D972BE /* GameChapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422DAEA920BC6E0900D972BE /* GameChapter.swift */; };
+		422DAEAC20BC6E9E00D972BE /* GameLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422DAEAB20BC6E9E00D972BE /* GameLayer.swift */; };
+		42618B5820BA9D95005BE797 /* ScenerySound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42618B5720BA9D95005BE797 /* ScenerySound.swift */; };
+		42618B5A20BAC5FE005BE797 /* GameScenery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42618B5920BAC5FE005BE797 /* GameScenery.swift */; };
+		426AB59220BCAD5B00CAA497 /* Menu.sks in Resources */ = {isa = PBXBuildFile; fileRef = 426AB59120BCAD5B00CAA497 /* Menu.sks */; };
+		426AB59420BCAD8000CAA497 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426AB59320BCAD8000CAA497 /* Menu.swift */; };
 		4271CFC520B76C56008A0D36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4271CFC420B76C56008A0D36 /* AppDelegate.swift */; };
 		4271CFC720B76C56008A0D36 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4271CFC620B76C56008A0D36 /* GameScene.sks */; };
 		4271CFC920B76C56008A0D36 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4271CFC820B76C56008A0D36 /* Actions.sks */; };
@@ -37,6 +44,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		422DAEA720BC6B2900D972BE /* chapter */ = {isa = PBXFileReference; lastKnownFileType = folder; path = chapter; sourceTree = "<group>"; };
+		422DAEA920BC6E0900D972BE /* GameChapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameChapter.swift; sourceTree = "<group>"; };
+		422DAEAB20BC6E9E00D972BE /* GameLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLayer.swift; sourceTree = "<group>"; };
+		42618B5720BA9D95005BE797 /* ScenerySound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenerySound.swift; sourceTree = "<group>"; };
+		42618B5920BAC5FE005BE797 /* GameScenery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScenery.swift; sourceTree = "<group>"; };
+		426AB59120BCAD5B00CAA497 /* Menu.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Menu.sks; sourceTree = "<group>"; };
+		426AB59320BCAD8000CAA497 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		4271CFC120B76C56008A0D36 /* Reise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4271CFC420B76C56008A0D36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4271CFC620B76C56008A0D36 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -83,6 +97,7 @@
 		4271CFB820B76C56008A0D36 = {
 			isa = PBXGroup;
 			children = (
+				422DAEA720BC6B2900D972BE /* chapter */,
 				4271CFC320B76C56008A0D36 /* Reise */,
 				4271CFDE20B76C57008A0D36 /* ReiseTests */,
 				4271CFE920B76C57008A0D36 /* ReiseUITests */,
@@ -112,6 +127,12 @@
 				4271CFD120B76C57008A0D36 /* Assets.xcassets */,
 				4271CFD320B76C57008A0D36 /* LaunchScreen.storyboard */,
 				4271CFD620B76C57008A0D36 /* Info.plist */,
+				42618B5720BA9D95005BE797 /* ScenerySound.swift */,
+				42618B5920BAC5FE005BE797 /* GameScenery.swift */,
+				422DAEA920BC6E0900D972BE /* GameChapter.swift */,
+				422DAEAB20BC6E9E00D972BE /* GameLayer.swift */,
+				426AB59120BCAD5B00CAA497 /* Menu.sks */,
+				426AB59320BCAD8000CAA497 /* Menu.swift */,
 			);
 			path = Reise;
 			sourceTree = "<group>";
@@ -202,6 +223,11 @@
 				TargetAttributes = {
 					4271CFC020B76C56008A0D36 = {
 						CreatedOnToolsVersion = 9.3;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					4271CFDA20B76C57008A0D36 = {
 						CreatedOnToolsVersion = 9.3;
@@ -238,9 +264,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				422DAEA820BC6B2900D972BE /* chapter in Resources */,
 				4271CFD020B76C56008A0D36 /* Main.storyboard in Resources */,
 				4271CFC720B76C56008A0D36 /* GameScene.sks in Resources */,
 				4271CFD220B76C57008A0D36 /* Assets.xcassets in Resources */,
+				426AB59220BCAD5B00CAA497 /* Menu.sks in Resources */,
 				4271CFD520B76C57008A0D36 /* LaunchScreen.storyboard in Resources */,
 				4271CFC920B76C56008A0D36 /* Actions.sks in Resources */,
 			);
@@ -268,8 +296,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				4271CFCB20B76C56008A0D36 /* GameScene.swift in Sources */,
+				422DAEAA20BC6E0900D972BE /* GameChapter.swift in Sources */,
+				426AB59420BCAD8000CAA497 /* Menu.swift in Sources */,
+				42618B5A20BAC5FE005BE797 /* GameScenery.swift in Sources */,
+				422DAEAC20BC6E9E00D972BE /* GameLayer.swift in Sources */,
 				4271CFCD20B76C56008A0D36 /* GameViewController.swift in Sources */,
 				4271CFC520B76C56008A0D36 /* AppDelegate.swift in Sources */,
+				42618B5820BA9D95005BE797 /* ScenerySound.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,7 +476,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QJ2943K5R7;
 				INFOPLIST_FILE = Reise/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -460,7 +495,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QJ2943K5R7;
 				INFOPLIST_FILE = Reise/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

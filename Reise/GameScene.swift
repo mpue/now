@@ -8,82 +8,138 @@
 
 import SpriteKit
 import GameplayKit
+import AVFoundation
+
+
 
 class GameScene: SKScene {
     
-    private var label : SKLabelNode?
-    private var spinnyNode : SKShapeNode?
+    private var move: Bool = false
     
-    override func didMove(to view: SKView) {
+    private var myAudioEngine: AVAudioEngine = AVAudioEngine()
+    private var mixer: AVAudioMixerNode = AVAudioMixerNode()
+    
+    // Time of last frame
+    private var lastFrameTime : TimeInterval = 0
+    
+    // Time since last frame
+    private var deltaTime : TimeInterval = 0
+    
+    private var direction: Float = 1;
+    private var xOffset: CGFloat = 0
+    private var chapter: Chapter?
+    
+    init(size: CGSize, chapter: Chapter) {
         
-        // Get label node from scene and store it for use later
-        self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
-        if let label = self.label {
-            label.alpha = 0.0
-            label.run(SKAction.fadeIn(withDuration: 2.0))
-        }
+        super.init(size: size)
         
-        // Create shape node to use during mouse interaction
-        let w = (self.size.width + self.size.height) * 0.05
-        self.spinnyNode = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: w * 0.3)
+        self.chapter = chapter
         
-        if let spinnyNode = self.spinnyNode {
-            spinnyNode.lineWidth = 2.5
-            
-            spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
-            spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
-                                              SKAction.fadeOut(withDuration: 0.5),
-                                              SKAction.removeFromParent()]))
-        }
+        self.myAudioEngine.attach(self.mixer)
+        self.myAudioEngine.connect(self.mixer, to: self.myAudioEngine.outputNode, format: nil)
+        // !important - start the engine *before* setting up the player nodes
+        try! self.myAudioEngine.start()
+        
+        self.chapter?.load(on: self, withSize: size, audioEngine: self.myAudioEngine, output: self.mixer)
+        
+        /*
+        // do work in a background thread
+        DispatchQueue.global(qos: .background).async {
+         
+        }*/
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("Not implemented")
+    }
     
+    override func didMove(to view: SKView) {
+    }
+
     func touchDown(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.green
-            self.addChild(n)
-        }
+
     }
     
     func touchMoved(toPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.blue
-            self.addChild(n)
-        }
+
     }
     
     func touchUp(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.red
-            self.addChild(n)
-        }
+
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let label = self.label {
-            label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
+        /* Called when a touch begins */
+        
+        var isRight : Bool = false
+        var isLeft : Bool = false
+        
+        for touch in touches {
+            let location = touch.location(in: self)
+
+            if(location.x < self.frame.size.width/2){
+                isLeft = true
+            }
+            
+            if(location.x > self.frame.size.width/2){
+                isRight = true
+            }
         }
         
-        for t in touches { self.touchDown(atPoint: t.location(in: self)) }
+        if (isRight && isLeft){
+            // "Both touched"
+            // do something..
+        } else if(isRight) {
+            direction = 1
+        } else if(isLeft) {
+            direction = -1
+        }
+
+        move = true
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
+        move = false;
+        direction *= -1;
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
+        
     }
     
+    @IBAction func Play(_ sender: AnyObject) {
+        print("play")
+    }
+    
+    @IBAction func Pause(_ sender: AnyObject) {
+        print("pause")
+    }
+    
+    @IBAction func Restart(_ sender: AnyObject) {
+        print("restart")
+    }
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+        
+        // If we don't have a last frame time value, this is the first frame,
+        // so delta time will be zero.
+        if lastFrameTime <= 0 {
+            lastFrameTime = currentTime
+        }
+        
+        // Update delta time
+        deltaTime = currentTime - lastFrameTime
+        
+        // Set last frame time to current time
+        lastFrameTime = currentTime
+        
+        if(move)
+        {
+            chapter?.update(on: self, timeSinceLastFrame: deltaTime * TimeInterval(direction), audioEngine: self.myAudioEngine, output: self.mixer)
+        }
     }
 }
