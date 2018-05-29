@@ -9,13 +9,19 @@
 import Foundation
 import AVFoundation
 
-class ScenerySound {
-    private var fileName: String
-    private var soundBuffer : AVAudioPCMBuffer
-    private var player: AVAudioPlayerNode?
+class Sound {
+    let startPosition: CGFloat
+    let endPosition: CGFloat
+    var isPlaying: Bool = false
     
-    var start: CGFloat
-    var end: CGFloat
+    private let file: AVAudioFile
+    private let volume: Float
+    private let startTime: UInt64
+    private let fadeInDuration: TimeInterval
+    private let fadeOutDuration: TimeInterval
+    
+    private let soundBuffer: AVAudioPCMBuffer
+    private var player: AVAudioPlayerNode?
     
     private var targetVolume: Float = 0
     private var startVolume: Float = 0
@@ -23,23 +29,14 @@ class ScenerySound {
     private var fadeStart: TimeInterval = 0
     private var timer: Timer?
     
-    private var isPlayingValue: Bool = false
-    
-    private var startTime: UInt64
-    private var fadeInDuration: Float
-    private var fadeOutDuration: Float
-    
-    
-    init(fileName: String, start: CGFloat, end: CGFloat, startTime: UInt64 = 0, fadeInDuration: Float = 0.5, fadeOutDuration: Float = 3) {
-        self.fileName = fileName
-        self.start = start
-        self.end = end
+    init(file: AVAudioFile, startPosition: Float, endPosition: Float, volume: Float, startTime: UInt64, fadeInDuration: Float, fadeOutDuration: Float) {
+        self.file = file
+        self.startPosition = CGFloat(startPosition)
+        self.endPosition = CGFloat(endPosition)
+        self.volume = volume
         self.startTime = startTime
-        self.fadeInDuration = fadeInDuration
-        self.fadeOutDuration = fadeOutDuration
-        
-        let fileUrl = Bundle.main.url(forResource: fileName, withExtension: "mp3")
-        let file = try! AVAudioFile.init(forReading: (fileUrl?.absoluteURL)!)
+        self.fadeInDuration = TimeInterval(fadeInDuration)
+        self.fadeOutDuration = TimeInterval(fadeOutDuration)
         
         let audioFormat = file.processingFormat
         let audioFrameCount = UInt32(file.length)
@@ -55,30 +52,21 @@ class ScenerySound {
         audioEngine.connect(player, to: output, format: nil)
         
         player.scheduleBuffer(self.soundBuffer, at: nil, options:.loops, completionHandler: nil)
-
+        
         let s = AVAudioTime(hostTime: self.startTime)
         player.play(at: s)
         //player.volume = 0
-
-        fadeIn(duration: TimeInterval(self.fadeInDuration))
-        isPlayingValue = true
         
-        print("play \(self.fileName)) ");
+        fadeIn(duration: self.fadeInDuration)
+        isPlaying = true
+        
+        print("play \(self.file.url)) ");
     }
     
     public func stop() {
-        isPlayingValue = false
-        fadeOut(duration: TimeInterval(self.fadeOutDuration))
-        print("stop \(self.fileName)) ");
-
-    }
-    
-    public func isPlaying() -> Bool {
-        if(nil == player)
-        {
-            return false;
-        }
-        return isPlayingValue
+        isPlaying = false
+        fadeOut(duration: self.fadeOutDuration)
+        print("stop \(self.file.url)) ");
     }
     
     private func fadeTo(volume: Float, duration: TimeInterval = 1.0) {
@@ -93,7 +81,8 @@ class ScenerySound {
     
     private func fadeIn(duration: TimeInterval = 1.0) {
         player?.volume = 0.0
-        fadeTo(volume: 1.0, duration: duration)
+        print(volume)
+        fadeTo(volume: self.volume, duration: duration)
     }
     
     private func fadeOut(duration: TimeInterval = 1.0) {

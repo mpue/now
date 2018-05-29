@@ -8,10 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		422DAEA820BC6B2900D972BE /* chapter in Resources */ = {isa = PBXBuildFile; fileRef = 422DAEA720BC6B2900D972BE /* chapter */; };
-		422DAEAA20BC6E0900D972BE /* GameChapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422DAEA920BC6E0900D972BE /* GameChapter.swift */; };
-		422DAEAC20BC6E9E00D972BE /* GameLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422DAEAB20BC6E9E00D972BE /* GameLayer.swift */; };
-		42618B5820BA9D95005BE797 /* ScenerySound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42618B5720BA9D95005BE797 /* ScenerySound.swift */; };
-		42618B5A20BAC5FE005BE797 /* GameScenery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42618B5920BAC5FE005BE797 /* GameScenery.swift */; };
+		422DAEAA20BC6E0900D972BE /* Chapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422DAEA920BC6E0900D972BE /* Chapter.swift */; };
+		422DAEAC20BC6E9E00D972BE /* Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422DAEAB20BC6E9E00D972BE /* Layer.swift */; };
+		42618B5820BA9D95005BE797 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42618B5720BA9D95005BE797 /* Sound.swift */; };
+		42618B5A20BAC5FE005BE797 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42618B5920BAC5FE005BE797 /* Scene.swift */; };
+		4263844320BDEB5000F88E24 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4263844220BDEB5000F88E24 /* Extensions.swift */; };
+		4263844520BDEB7400F88E24 /* ChapterParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4263844420BDEB7400F88E24 /* ChapterParser.swift */; };
 		426AB59220BCAD5B00CAA497 /* Menu.sks in Resources */ = {isa = PBXBuildFile; fileRef = 426AB59120BCAD5B00CAA497 /* Menu.sks */; };
 		426AB59420BCAD8000CAA497 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426AB59320BCAD8000CAA497 /* Menu.swift */; };
 		4271CFC520B76C56008A0D36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4271CFC420B76C56008A0D36 /* AppDelegate.swift */; };
@@ -45,10 +47,12 @@
 
 /* Begin PBXFileReference section */
 		422DAEA720BC6B2900D972BE /* chapter */ = {isa = PBXFileReference; lastKnownFileType = folder; path = chapter; sourceTree = "<group>"; };
-		422DAEA920BC6E0900D972BE /* GameChapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameChapter.swift; sourceTree = "<group>"; };
-		422DAEAB20BC6E9E00D972BE /* GameLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLayer.swift; sourceTree = "<group>"; };
-		42618B5720BA9D95005BE797 /* ScenerySound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenerySound.swift; sourceTree = "<group>"; };
-		42618B5920BAC5FE005BE797 /* GameScenery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScenery.swift; sourceTree = "<group>"; };
+		422DAEA920BC6E0900D972BE /* Chapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chapter.swift; sourceTree = "<group>"; };
+		422DAEAB20BC6E9E00D972BE /* Layer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layer.swift; sourceTree = "<group>"; };
+		42618B5720BA9D95005BE797 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
+		42618B5920BAC5FE005BE797 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
+		4263844220BDEB5000F88E24 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		4263844420BDEB7400F88E24 /* ChapterParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterParser.swift; sourceTree = "<group>"; };
 		426AB59120BCAD5B00CAA497 /* Menu.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Menu.sks; sourceTree = "<group>"; };
 		426AB59320BCAD8000CAA497 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		4271CFC120B76C56008A0D36 /* Reise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reise.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,6 +98,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4263844620BDEBB600F88E24 /* Chapter */ = {
+			isa = PBXGroup;
+			children = (
+				42618B5720BA9D95005BE797 /* Sound.swift */,
+				42618B5920BAC5FE005BE797 /* Scene.swift */,
+				422DAEA920BC6E0900D972BE /* Chapter.swift */,
+				422DAEAB20BC6E9E00D972BE /* Layer.swift */,
+				4263844420BDEB7400F88E24 /* ChapterParser.swift */,
+			);
+			name = Chapter;
+			sourceTree = "<group>";
+		};
 		4271CFB820B76C56008A0D36 = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +134,7 @@
 		4271CFC320B76C56008A0D36 /* Reise */ = {
 			isa = PBXGroup;
 			children = (
+				4263844620BDEBB600F88E24 /* Chapter */,
 				4271CFC420B76C56008A0D36 /* AppDelegate.swift */,
 				4271CFC620B76C56008A0D36 /* GameScene.sks */,
 				4271CFC820B76C56008A0D36 /* Actions.sks */,
@@ -127,12 +144,9 @@
 				4271CFD120B76C57008A0D36 /* Assets.xcassets */,
 				4271CFD320B76C57008A0D36 /* LaunchScreen.storyboard */,
 				4271CFD620B76C57008A0D36 /* Info.plist */,
-				42618B5720BA9D95005BE797 /* ScenerySound.swift */,
-				42618B5920BAC5FE005BE797 /* GameScenery.swift */,
-				422DAEA920BC6E0900D972BE /* GameChapter.swift */,
-				422DAEAB20BC6E9E00D972BE /* GameLayer.swift */,
 				426AB59120BCAD5B00CAA497 /* Menu.sks */,
 				426AB59320BCAD8000CAA497 /* Menu.swift */,
+				4263844220BDEB5000F88E24 /* Extensions.swift */,
 			);
 			path = Reise;
 			sourceTree = "<group>";
@@ -296,13 +310,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				4271CFCB20B76C56008A0D36 /* GameScene.swift in Sources */,
-				422DAEAA20BC6E0900D972BE /* GameChapter.swift in Sources */,
+				4263844320BDEB5000F88E24 /* Extensions.swift in Sources */,
+				4263844520BDEB7400F88E24 /* ChapterParser.swift in Sources */,
+				422DAEAA20BC6E0900D972BE /* Chapter.swift in Sources */,
 				426AB59420BCAD8000CAA497 /* Menu.swift in Sources */,
-				42618B5A20BAC5FE005BE797 /* GameScenery.swift in Sources */,
-				422DAEAC20BC6E9E00D972BE /* GameLayer.swift in Sources */,
+				42618B5A20BAC5FE005BE797 /* Scene.swift in Sources */,
+				422DAEAC20BC6E9E00D972BE /* Layer.swift in Sources */,
 				4271CFCD20B76C56008A0D36 /* GameViewController.swift in Sources */,
 				4271CFC520B76C56008A0D36 /* AppDelegate.swift in Sources */,
-				42618B5820BA9D95005BE797 /* ScenerySound.swift in Sources */,
+				42618B5820BA9D95005BE797 /* Sound.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
