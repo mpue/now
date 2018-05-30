@@ -38,8 +38,6 @@ class AutoScrollingLayer : Layer {
             s?.position = newPosition
         }
         
-        print(nextSprite?.frame.minX)
-        
         if (sprite?.frame.maxX) ?? 0 < on.frame.minX {
             let tempSprite = self.sprite
             sprite = nextSprite
@@ -92,8 +90,10 @@ class Layer {
     
     public func update(on: SKScene, moveLayer: Bool, timeSinceLastFrame: TimeInterval, audioEngine: AVAudioEngine, output: AVAudioMixerNode) {
         
-        if(isVisible && moveLayer) {
-            move(on: on, timeSinceLastFrame: timeSinceLastFrame)
+        if(isVisible) {
+            if(moveLayer) {
+               move(on: on, timeSinceLastFrame: timeSinceLastFrame)
+            }
             playSound(audioEngine: audioEngine, output: output)
         } else {
             stopSound(audioEngine: audioEngine)

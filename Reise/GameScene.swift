@@ -27,20 +27,20 @@ class GameScene: SKScene {
     
     private var direction: Float = 1;
     private var xOffset: CGFloat = 0
-    private var chapter: Chapter?
+    private var chapter: Chapter
     
     init(size: CGSize, chapter: Chapter) {
         
-        super.init(size: size)
-        
         self.chapter = chapter
+
+        super.init(size: size)
         
         self.myAudioEngine.attach(self.mixer)
         self.myAudioEngine.connect(self.mixer, to: self.myAudioEngine.outputNode, format: nil)
         // !important - start the engine *before* setting up the player nodes
         try! self.myAudioEngine.start()
         
-        self.chapter?.load(on: self, withSize: size, audioEngine: self.myAudioEngine, output: self.mixer)
+        self.chapter.load(on: self, withSize: size, audioEngine: self.myAudioEngine, output: self.mixer)
         
         /*
         // do work in a background thread
@@ -65,7 +65,6 @@ class GameScene: SKScene {
     }
     
     func touchUp(atPoint pos : CGPoint) {
-
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -85,16 +84,16 @@ class GameScene: SKScene {
                 isRight = true
             }
         }
-        
         if (isRight && isLeft){
             // "Both touched"
             // do something..
+            
         } else if(isRight) {
             direction = 1
         } else if(isLeft) {
             direction = -1
         }
-
+        
         move = true
     }
     
@@ -138,7 +137,7 @@ class GameScene: SKScene {
         lastFrameTime = currentTime
         
         
-        chapter?.update(on: self, move: move, timeSinceLastFrame: deltaTime * TimeInterval(direction), audioEngine: self.myAudioEngine, output: self.mixer)
+        chapter.update(on: self, move: move, timeSinceLastFrame: deltaTime * TimeInterval(direction), audioEngine: self.myAudioEngine, output: self.mixer)
         
     }
 }

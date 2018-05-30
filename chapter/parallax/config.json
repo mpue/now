@@ -17,6 +17,13 @@
                        ]
                        },
                        {
+                       "image":"two_clouds.png",
+                       "speed":55,
+                       "autoScroll": true,
+                       "sound":[
+                       ]
+                       },
+                       {
                        "image":"dawn_fg.png",
                        "speed":150,
                        "sound":[
