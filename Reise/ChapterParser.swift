@@ -56,7 +56,12 @@ class ChapterParser {
                 }
                 
                 let image = SKTexture(imageNamed: imagePath)
-                let gameLayer = Layer(texture: image, speed: layer.speed, autoScroll: layer.autoScroll ?? false)
+                var gameLayer : Layer
+                if(layer.autoScroll ?? false) {
+                    gameLayer = AutoScrollingLayer(texture: image, speed: layer.speed)
+                } else {
+                    gameLayer = Layer(texture: image, speed: layer.speed)
+                }
                 
                 for sound in layer.sound {
                     let soundPath = "chapter/" + chapter.title + "/sound/" + sound.file

@@ -10,19 +10,60 @@ import Foundation
 import AVFoundation
 import SpriteKit
 
+class AutoScrollingLayer : Layer {
+    var nextSprite: SKSpriteNode?
+    
+    override func update(on: SKScene, moveLayer: Bool, timeSinceLastFrame: TimeInterval, audioEngine: AVAudioEngine, output: AVAudioMixerNode) {
+        super.update(on: on, moveLayer: true, timeSinceLastFrame: abs(timeSinceLastFrame), audioEngine: audioEngine, output: output)
+    }
+    
+    override func load(on: SKScene, withSize: CGSize, atPosition: CGPoint) {
+        super.load(on: on, withSize: withSize, atPosition: atPosition)
+        
+        nextSprite = sprite?.copy() as? SKSpriteNode
+        nextSprite?.position = CGPoint(x: sprite?.size.width ?? 0, y: nextSprite?.size.height ?? 0)
+        
+        if(nil != nextSprite) {
+            on.addChild(nextSprite!)
+        }
+    }
+    
+    override func move(on: SKScene, timeSinceLastFrame: TimeInterval) {
+        
+        for s in [sprite, nextSprite] {
+            var newPosition: CGPoint
+            // Shift the sprite leftward based on the speed
+            newPosition = s?.position ?? CGPoint(x: 0, y: 0)
+            newPosition.x -= CGFloat(speed * Float(timeSinceLastFrame))
+            s?.position = newPosition
+        }
+        
+        print(nextSprite?.frame.minX)
+        
+        if (sprite?.frame.maxX) ?? 0 < on.frame.minX {
+            let tempSprite = self.sprite
+            sprite = nextSprite
+            nextSprite = tempSprite
+            
+            nextSprite?.position = CGPoint(x: sprite?.size.width ?? 0, y: nextSprite?.size.height ?? 0)
+            
+        }
+        // TODO other direction
+    }
+}
+
 class Layer {
     
     var isVisible: Bool = false
     private let texture: SKTexture
-    private var sprite: SKSpriteNode?
-    private let speed: Float
-    private let autoScroll: Bool
+    var sprite: SKSpriteNode?
+    private var nextSprite: SKSpriteNode? // TODO create AutoScrollingLayer
+    let speed: Float
     private var sounds: [Sound] = Array()
     
-    init(texture: SKTexture, speed: Float, autoScroll: Bool) {
+    init(texture: SKTexture, speed: Float) {
         self.texture = texture
         self.speed = speed
-        self.autoScroll = autoScroll
     }
     
     func add(sound: Sound) {
@@ -51,14 +92,9 @@ class Layer {
     
     public func update(on: SKScene, moveLayer: Bool, timeSinceLastFrame: TimeInterval, audioEngine: AVAudioEngine, output: AVAudioMixerNode) {
         
-        if(isVisible) {
-            if autoScroll {
-                move(on: on, timeSinceLastFrame: abs(timeSinceLastFrame))
-            } else if(moveLayer) {
-                move(on: on, timeSinceLastFrame: timeSinceLastFrame)
-            }
+        if(isVisible && moveLayer) {
+            move(on: on, timeSinceLastFrame: timeSinceLastFrame)
             playSound(audioEngine: audioEngine, output: output)
-
         } else {
             stopSound(audioEngine: audioEngine)
         }
@@ -92,7 +128,7 @@ class Layer {
         }
     }
     
-    private func move(on: SKScene, timeSinceLastFrame: TimeInterval) {
+    func move(on: SKScene, timeSinceLastFrame: TimeInterval) {
         var newPosition: CGPoint
         
         // Shift the sprite leftward based on the speed
@@ -107,5 +143,9 @@ class Layer {
     
     public func getWidth() -> CGFloat {
         return sprite?.size.width ?? 0;
+    }
+    
+    public func getHight() -> CGFloat {
+        return sprite?.size.height ?? 0
     }
 }

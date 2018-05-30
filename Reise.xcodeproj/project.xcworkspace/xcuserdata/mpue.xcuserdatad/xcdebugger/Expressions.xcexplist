@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "AutoScrollingLayer.move(on:timeSinceLastFrame:):Layer.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "nextSprite?.frame">
+            </PersistentString>
+            <PersistentString
+               value = "on.frame.maxX">
+            </PersistentString>
+            <PersistentString
+               value = "nextSprite?.frame.maxX">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Layer.move(on:timeSinceLastFrame:):Layer.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "sprite?.frame.maxX">
+            </PersistentString>
+            <PersistentString
+               value = "on.frame.minX ">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AutoScrollingLayer.load(on:withSize:atPosition:):Layer.swift">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
