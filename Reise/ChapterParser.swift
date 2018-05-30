@@ -25,6 +25,7 @@ class ChapterParser {
     struct JsonLayer : Codable {
         let image: String
         let speed: Float
+        var autoScroll: Bool? = false
         let sound: [JsonSound]
     }
     
@@ -55,7 +56,7 @@ class ChapterParser {
                 }
                 
                 let image = SKTexture(imageNamed: imagePath)
-                let gameLayer = Layer(texture: image, speed: layer.speed)
+                let gameLayer = Layer(texture: image, speed: layer.speed, autoScroll: layer.autoScroll ?? false)
                 
                 for sound in layer.sound {
                     let soundPath = "chapter/" + chapter.title + "/sound/" + sound.file

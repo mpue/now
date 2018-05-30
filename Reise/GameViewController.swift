@@ -19,6 +19,7 @@ class GameViewController: UIViewController {
         let value = UIInterfaceOrientation.landscapeLeft.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")
         
+        /*
         // enable background audio playback
         let audioSession = AVAudioSession.sharedInstance()
         
@@ -26,7 +27,7 @@ class GameViewController: UIViewController {
             try audioSession.setCategory(AVAudioSessionCategoryMultiRoute)
         } catch {
             print(error)
-        }
+        }*/
         
         let scene = Menu(size:CGSize(width: 1920, height: 1080))
         

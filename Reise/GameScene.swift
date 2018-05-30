@@ -137,9 +137,8 @@ class GameScene: SKScene {
         // Set last frame time to current time
         lastFrameTime = currentTime
         
-        if(move)
-        {
-            chapter?.update(on: self, timeSinceLastFrame: deltaTime * TimeInterval(direction), audioEngine: self.myAudioEngine, output: self.mixer)
-        }
+        
+        chapter?.update(on: self, move: move, timeSinceLastFrame: deltaTime * TimeInterval(direction), audioEngine: self.myAudioEngine, output: self.mixer)
+        
     }
 }

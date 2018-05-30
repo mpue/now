@@ -16,11 +16,13 @@ class Layer {
     private let texture: SKTexture
     private var sprite: SKSpriteNode?
     private let speed: Float
+    private let autoScroll: Bool
     private var sounds: [Sound] = Array()
     
-    init(texture: SKTexture, speed: Float) {
+    init(texture: SKTexture, speed: Float, autoScroll: Bool) {
         self.texture = texture
         self.speed = speed
+        self.autoScroll = autoScroll
     }
     
     func add(sound: Sound) {
@@ -47,11 +49,16 @@ class Layer {
         playSound(audioEngine: audioEngine, output: output)
     }
     
-    public func update(on: SKScene, timeSinceLastFrame: TimeInterval, audioEngine: AVAudioEngine, output: AVAudioMixerNode) {
+    public func update(on: SKScene, moveLayer: Bool, timeSinceLastFrame: TimeInterval, audioEngine: AVAudioEngine, output: AVAudioMixerNode) {
         
         if(isVisible) {
-            move(on: on, timeSinceLastFrame: timeSinceLastFrame)
+            if autoScroll {
+                move(on: on, timeSinceLastFrame: abs(timeSinceLastFrame))
+            } else if(moveLayer) {
+                move(on: on, timeSinceLastFrame: timeSinceLastFrame)
+            }
             playSound(audioEngine: audioEngine, output: output)
+
         } else {
             stopSound(audioEngine: audioEngine)
         }

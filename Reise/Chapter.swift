@@ -48,10 +48,10 @@ class Chapter {
         }
     }
     
-    public func update(on: SKScene, timeSinceLastFrame: TimeInterval, audioEngine: AVAudioEngine, output: AVAudioMixerNode) {
+    public func update(on: SKScene, move: Bool, timeSinceLastFrame: TimeInterval, audioEngine: AVAudioEngine, output: AVAudioMixerNode) {
         
-        currentScene?.update(on: on, timeSinceLastFrame: timeSinceLastFrame, audioEngine: audioEngine, output: output)
-        nextScene?.update(on: on, timeSinceLastFrame: timeSinceLastFrame, audioEngine: audioEngine, output: output)
+        currentScene?.update(on: on, move: move, timeSinceLastFrame: timeSinceLastFrame, audioEngine: audioEngine, output: output)
+        nextScene?.update(on: on, move: move, timeSinceLastFrame: timeSinceLastFrame, audioEngine: audioEngine, output: output)
 
         if(!(currentScene?.isVisible() ?? false))
         {

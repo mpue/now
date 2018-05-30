@@ -20,7 +20,7 @@ class Menu: SKScene {
     override init(size: CGSize) {
         let parser = ChapterParser()
         
-        let chapterConfigFiles = ["chapter/parallax/config", "chapter/one/config"]
+        let chapterConfigFiles = ["chapter/two/config", "chapter/one/config"]
         
         for configFile in chapterConfigFiles {
             if let path = Bundle.main.path(forResource: configFile, ofType: "json") {

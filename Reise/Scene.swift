@@ -29,9 +29,9 @@ class Scene {
         }
     }
     
-    public func update(on: SKScene, timeSinceLastFrame: TimeInterval, audioEngine: AVAudioEngine, output: AVAudioMixerNode) {
+    public func update(on: SKScene, move: Bool, timeSinceLastFrame: TimeInterval, audioEngine: AVAudioEngine, output: AVAudioMixerNode) {
         for layer in self.layer {
-            layer.update(on: on, timeSinceLastFrame: timeSinceLastFrame, audioEngine: audioEngine, output: output)
+            layer.update(on: on, moveLayer: move, timeSinceLastFrame: timeSinceLastFrame, audioEngine: audioEngine, output: output)
         }
     }
     

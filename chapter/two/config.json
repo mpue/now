@@ -1,0 +1,45 @@
+
+{
+    "title":"two",
+    "scenes":[
+              {
+              "layer":[
+                       {
+                       "image":"dawn_beta_1_bg.png",
+                       "speed":35,
+                       "sound":[
+                       ]
+                       },
+                       {
+                       "image":"dawn_beta_1_mg.png",
+                       "speed":50,
+                       "sound":[
+                       ]
+                       },
+                       {
+                       "image":"dawn_beta_1_clouds.png",
+                       "speed":55,
+                       "autoScroll": true,
+                       "sound":[
+                       ]
+                       },
+                       {
+                       "image":"dawn_beta_1_fg.png",
+                       "speed":70,
+                       "sound":[
+                                {
+                                "file":"cayzland-geraeusche-atmos-700-vogelgezwitscher",
+                                "type":"mp3",
+                                "startPosition":0,
+                                "endPosition":200000,
+                                "startTime":0,
+                                "fadeInDuration":1,
+                                "fadeOutDuration":3,
+                                "volume":1
+                                }
+                                ]
+                       }
+                       ]
+              }
+              ]
+    }
