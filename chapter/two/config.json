@@ -5,26 +5,65 @@
               {
               "layer":[
                        {
-                       "image":"dawn_beta_1_bg.png",
+                       "image":"two_bg_1.png",
                        "speed":35,
                        "sound":[
                        ]
                        },
                        {
-                       "image":"dawn_beta_1_mg.png",
+                       "image":"two_mg_1.png",
                        "speed":50,
                        "sound":[
                        ]
                        },
                        {
-                       "image":"dawn_beta_1_clouds.png",
+                       "image":"two_clouds.png",
                        "speed":55,
                        "autoScroll": true,
                        "sound":[
                        ]
                        },
                        {
-                       "image":"dawn_beta_1_fg.png",
+                       "image":"two_fg_1.png",
+                       "speed":70,
+                       "sound":[
+                                {
+                                "file":"cayzland-geraeusche-atmos-700-vogelgezwitscher",
+                                "type":"mp3",
+                                "startPosition":0,
+                                "endPosition":200000,
+                                "startTime":0,
+                                "fadeInDuration":1,
+                                "fadeOutDuration":3,
+                                "volume":1
+                                }
+                                ]
+                       }
+                       ]
+              },
+              {
+              "layer":[
+                       {
+                       "image":"two_bg_2.png",
+                       "speed":35,
+                       "sound":[
+                       ]
+                       },
+                       {
+                       "image":"two_mg_2.png",
+                       "speed":50,
+                       "sound":[
+                       ]
+                       },
+                       {
+                       "image":"two_clouds.png",
+                       "speed":55,
+                       "autoScroll": true,
+                       "sound":[
+                       ]
+                       },
+                       {
+                       "image":"two_fg_2.png",
                        "speed":70,
                        "sound":[
                                 {
