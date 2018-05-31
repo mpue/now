@@ -50,13 +50,15 @@ class Chapter {
     
     public func update(on: SKScene, move: Bool, timeSinceLastFrame: TimeInterval, audioEngine: AVAudioEngine, output: AVAudioMixerNode) {
         
+        // current scene could move out of the left side of the screen. lets update it first
         currentScene?.update(on: on, move: move, timeSinceLastFrame: timeSinceLastFrame, audioEngine: audioEngine, output: output)
         nextScene?.update(on: on, move: currentScene?.isMoving ?? false, timeSinceLastFrame: timeSinceLastFrame, audioEngine: audioEngine, output: output)
-        
+
+        /*
         if(!(currentScene?.isVisible() ?? false))
         {
             currentScene = nextScene
-        }
+        }*/
         
     }
 }

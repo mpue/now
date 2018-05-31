@@ -48,8 +48,9 @@ class GameViewController: UIViewController {
                 print("invalid path")
             }
         }
+        print(self.view.frame.size)
         
-        let scene = Menu(size:CGSize(width: 1920, height: 1080), chapters: chapters)
+        let scene = Menu(size:CGSize(width: self.view.frame.size.height, height: self.view.frame.size.width), chapters: chapters)
         
         let skView = self.view as! SKView
         scene.scaleMode = .aspectFill
@@ -57,13 +58,17 @@ class GameViewController: UIViewController {
         skView.presentScene(scene)
         
     }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+    }
 
     override var shouldAutorotate: Bool {
         return true
     }
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return UIInterfaceOrientationMask.all
+        return UIInterfaceOrientationMask.landscape
     }
 
     override func didReceiveMemoryWarning() {

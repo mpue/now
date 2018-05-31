@@ -81,7 +81,7 @@ class GameScene: SKScene {
         
             tapCount += touch.tapCount
             
-            if(location.x < 120 && location.y > 1000)
+            if(location.x < (self.frame.size.height/4) && location.y > ((self.frame.size.height/4)*3))
             {
                 // exit chapter
                 let scene = Menu(size:CGSize(width: self.frame.size.width, height: self.frame.size.height), chapters: self.chapters)

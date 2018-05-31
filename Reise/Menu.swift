@@ -19,19 +19,22 @@ class Menu: SKScene {
         super.init(size: size)
 
         self.chapters = chapters
-        let xPosition: CGFloat = self.frame.size.width/2
-        var yPosition: CGFloat = self.frame.size.height/5 * 4
         
-        for chapter in chapters {
+        if !chapters.isEmpty {
+            let yStep = (self.frame.size.height/CGFloat(chapters.count))
+            let xPosition: CGFloat = self.frame.size.width/2
+            var yPosition: CGFloat = yStep * CGFloat(chapters.count - 1) + yStep * 0.5
             
-            let parallaxLabel = SKLabelNode(text: "Chapter: " + chapter.title)
-            parallaxLabel.name = chapter.title
-            parallaxLabel.fontSize = 65
-            parallaxLabel.position.x = xPosition
-            parallaxLabel.position.y = yPosition
-            self.addChild(parallaxLabel)
-            
-            yPosition -= 200
+            for chapter in chapters {
+                let parallaxLabel = SKLabelNode(text: "Chapter: " + chapter.title)
+                parallaxLabel.name = chapter.title
+                //parallaxLabel.fontSize = 65
+                parallaxLabel.position.x = xPosition
+                parallaxLabel.position.y = yPosition
+                self.addChild(parallaxLabel)
+                
+                yPosition -= yStep
+            }
         }
     }
     
