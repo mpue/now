@@ -18,7 +18,10 @@ class AutoScrollingLayer : Layer {
     }
     
     override func load(on: SKScene, withSize: CGSize, atPosition: CGPoint) {
+
         super.load(on: on, withSize: withSize, atPosition: atPosition)
+        
+        var firstActions: [SKAction] = Array()
         
         nextSprite = sprite?.copy() as? SKSpriteNode
         nextSprite?.position = CGPoint(x: sprite?.size.width ?? 0, y: nextSprite?.size.height ?? 0)
@@ -26,26 +29,25 @@ class AutoScrollingLayer : Layer {
         if(nil != nextSprite) {
             on.addChild(nextSprite!)
         }
+        
+        // TODO create a autoScrollLayer in json bcause speed != duration!
+        firstActions.append(SKAction.move(to: CGPoint(x: atPosition.x - (sprite?.size.width)!, y: atPosition.y), duration: TimeInterval(speed)))
+        firstActions.append(SKAction.move(to: CGPoint(x: atPosition.x + (sprite?.size.width)!, y: atPosition.y), duration: TimeInterval(0)))
+        firstActions.append(SKAction.move(to: CGPoint(x: atPosition.x, y: atPosition.y), duration: TimeInterval(speed)))
+
+        sprite?.run(SKAction.repeatForever(SKAction.sequence(firstActions)))
+        
+        var secondActions: [SKAction] = Array()
+        
+        secondActions.append(SKAction.move(to: CGPoint(x: atPosition.x, y: atPosition.y), duration: TimeInterval(speed)))
+        secondActions.append(SKAction.move(to: CGPoint(x: atPosition.x - (sprite?.size.width)!, y: atPosition.y), duration: TimeInterval(speed)))
+        secondActions.append(SKAction.move(to: CGPoint(x: atPosition.x + (sprite?.size.width)!, y: atPosition.y), duration: TimeInterval(0)))
+        nextSprite?.run(SKAction.repeatForever(SKAction.sequence(secondActions)))
+        
     }
     
     override func move(on: SKScene, timeSinceLastFrame: TimeInterval) {
-        
-        for s in [sprite, nextSprite] {
-            var newPosition: CGPoint
-            // Shift the sprite leftward based on the speed
-            newPosition = s?.position ?? CGPoint(x: 0, y: 0)
-            newPosition.x -= CGFloat(speed * Float(timeSinceLastFrame))
-            s?.position = newPosition
-        }
-        
-        if (sprite?.frame.maxX) ?? 0 < on.frame.minX {
-            let tempSprite = self.sprite
-            sprite = nextSprite
-            nextSprite = tempSprite
-            
-            nextSprite?.position = CGPoint(x: sprite?.size.width ?? 0, y: nextSprite?.size.height ?? 0)
-            
-        }
+        // movement is done via SKActions
         // TODO other direction
     }
 }
@@ -53,7 +55,7 @@ class AutoScrollingLayer : Layer {
 class Layer {
     
     var isVisible: Bool = false
-    private let texture: SKTexture
+    let texture: SKTexture
     var sprite: SKSpriteNode?
     private var nextSprite: SKSpriteNode? // TODO create AutoScrollingLayer
     let speed: Float

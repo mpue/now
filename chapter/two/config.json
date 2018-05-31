@@ -56,13 +56,6 @@
                        ]
                        },
                        {
-                       "image":"two_clouds.png",
-                       "speed":55,
-                       "autoScroll": true,
-                       "sound":[
-                       ]
-                       },
-                       {
                        "image":"two_fg_2.png",
                        "speed":70,
                        "sound":[
