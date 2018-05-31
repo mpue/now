@@ -11,15 +11,15 @@
                        ]
                        },
                        {
-                       "image":"dawn_mg.png",
-                       "speed":100,
+                       "image":"two_clouds.png",
+                       "speed":200,
+                       "autoScroll": true,
                        "sound":[
                        ]
                        },
                        {
-                       "image":"two_clouds.png",
-                       "speed":55,
-                       "autoScroll": true,
+                       "image":"dawn_mg.png",
+                       "speed":100,
                        "sound":[
                        ]
                        },

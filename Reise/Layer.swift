@@ -46,6 +46,7 @@ class AutoScrollingLayer : Layer {
         secondActions.append(SKAction.move(to: CGPoint(x: atPosition.x + (sprite?.size.width)!, y: atPosition.y), duration: TimeInterval(0)))
         nextSprite?.run(SKAction.repeatForever(SKAction.sequence(secondActions)))
         
+        isMoving = true        
     }
     
     override func move(on: SKScene, timeSinceLastFrame: TimeInterval) {
@@ -56,7 +57,11 @@ class AutoScrollingLayer : Layer {
 
 class Layer {
     
+    var limitMinXPosition : Bool = false
+    var limitMaxXPosition : Bool = false
+    
     var isVisible: Bool = false
+    var isMoving: Bool = false
     let texture: SKTexture
     var sprite: SKSpriteNode?
     private var nextSprite: SKSpriteNode? // TODO create AutoScrollingLayer
@@ -134,12 +139,19 @@ class Layer {
     
     func move(on: SKScene, timeSinceLastFrame: TimeInterval) {
         var newPosition: CGPoint
-        
-        // Shift the sprite leftward based on the speed
+        let minXPosition: CGFloat = 0
         newPosition = sprite?.position ?? CGPoint(x: 0, y: 0)
         newPosition.x -= CGFloat(speed * Float(timeSinceLastFrame))
-        sprite?.position = newPosition
         
+        if(!(limitMinXPosition && newPosition.x > minXPosition) && !(limitMaxXPosition && ((sprite?.frame.maxX ?? 0) + newPosition.x) < on.frame.maxX)) {
+            // Shift the sprite leftward based on the speed
+
+            sprite?.position = newPosition
+            isMoving = true
+        } else {
+            isMoving = false
+        }
+
         if (sprite?.frame.maxX) ?? 0 < on.frame.minX {
             isVisible = false
         }

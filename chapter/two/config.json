@@ -6,13 +6,13 @@
               "layer":[
                        {
                        "image":"two_bg_1.png",
-                       "speed":35,
+                       "speed":70,
                        "sound":[
                        ]
                        },
                        {
                        "image":"two_mg_1.png",
-                       "speed":50,
+                       "speed":100,
                        "sound":[
                        ]
                        },
@@ -25,7 +25,7 @@
                        },
                        {
                        "image":"two_fg_1.png",
-                       "speed":70,
+                       "speed":150,
                        "sound":[
                                 {
                                 "file":"cayzland-geraeusche-atmos-700-vogelgezwitscher",
@@ -45,19 +45,19 @@
               "layer":[
                        {
                        "image":"two_bg_2.png",
-                       "speed":35,
+                       "speed":70,
                        "sound":[
                        ]
                        },
                        {
                        "image":"two_mg_2.png",
-                       "speed":50,
+                       "speed":100,
                        "sound":[
                        ]
                        },
                        {
                        "image":"two_fg_2.png",
-                       "speed":70,
+                       "speed":150,
                        "sound":[
                                 {
                                 "file":"cayzland-geraeusche-atmos-700-vogelgezwitscher",

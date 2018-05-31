@@ -21,7 +21,23 @@
                        "image":"Path.png",
                        "speed":150,
                        "sound":[
-                        ]
+                       ]
+                       }
+                       ]
+              },
+              {
+              "layer":[
+                       {
+                       "image":"Hills.png",
+                       "speed":100,
+                       "sound":[
+                       ]
+                       },
+                       {
+                       "image":"Path.png",
+                       "speed":150,
+                       "sound":[
+                       ]
                        }
                        ]
               }
