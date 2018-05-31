@@ -59,7 +59,7 @@ class ChapterParser {
                 var gameLayer : Layer
                 let speedMultiplier: Float = 1
                 if(layer.autoScroll ?? false) {
-                    gameLayer = AutoScrollingLayer(texture: image, speed: layer.speed * speedMultiplier)
+                    gameLayer = AutoScrollingLayer(texture: image, speed: layer.speed / speedMultiplier)
                 } else {
                     gameLayer = Layer(texture: image, speed: layer.speed * speedMultiplier)
                 }
