@@ -28,8 +28,28 @@ class GameViewController: UIViewController {
         } catch {
             print(error)
         }*/
+        let parser = ChapterParser()
+        let chapterConfigFiles = ["chapter/demo/config", "chapter/parallax/config", "chapter/one/config", "chapter/two/config"]
+        var chapters: [Chapter] = Array()
         
-        let scene = Menu(size:CGSize(width: 1920, height: 1080))
+        for configFile in chapterConfigFiles {
+            if let path = Bundle.main.path(forResource: configFile, ofType: "json") {
+                do {
+                    let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                    
+                    let chapter = try parser.parse(json: data)
+                    
+                    chapters.append(chapter)
+                } catch {
+                    // handle error
+                    print(error)
+                }
+            } else {
+                print("invalid path")
+            }
+        }
+        
+        let scene = Menu(size:CGSize(width: 1920, height: 1080), chapters: chapters)
         
         let skView = self.view as! SKView
         scene.scaleMode = .aspectFill

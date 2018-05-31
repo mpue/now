@@ -27,11 +27,14 @@ class GameScene: SKScene {
     
     private var direction: Float = 1;
     private var xOffset: CGFloat = 0
+    private var chapters: [Chapter]
+
     private var chapter: Chapter
     
-    init(size: CGSize, chapter: Chapter) {
+    init(size: CGSize, displayChapter: Int, fromChapters: [Chapter]) {
         
-        self.chapter = chapter
+        self.chapters = fromChapters
+        self.chapter = chapters[displayChapter]
 
         super.init(size: size)
         
@@ -72,9 +75,18 @@ class GameScene: SKScene {
         
         var isRight : Bool = false
         var isLeft : Bool = false
-        
+        var tapCount = 0
         for touch in touches {
             let location = touch.location(in: self)
+        
+            tapCount += touch.tapCount
+            
+            if(location.x < 120 && location.y > 1000)
+            {
+                // exit chapter
+                let scene = Menu(size:CGSize(width: self.frame.size.width, height: self.frame.size.height), chapters: self.chapters)
+                self.scene?.view?.presentScene(scene, transition: SKTransition.doorsCloseHorizontal(withDuration: TimeInterval(1)))
+            }
 
             if(location.x < self.frame.size.width/2){
                 isLeft = true
@@ -88,12 +100,18 @@ class GameScene: SKScene {
             // "Both touched"
             // do something..
             
+            
         } else if(isRight) {
             direction = 1
         } else if(isLeft) {
             direction = -1
         }
         
+        if(tapCount >= 2)
+        {
+            // do something..
+            
+        }
         move = true
     }
     
@@ -102,7 +120,6 @@ class GameScene: SKScene {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         move = false;
-        direction *= -1;
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {

@@ -26,29 +26,61 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reise/Menu.swift"
-            timestampString = "549411843.143203"
+            timestampString = "549452793.294744"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "touchesBegan(_:with:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Reise/Menu.swift"
-            timestampString = "549411843.143598"
+            filePath = "Reise/GameScene.swift"
+            timestampString = "549452793.29506"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "GameScene"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Reise.GameScene.__allocating_init(coder: __ObjC.NSCoder) -&gt; Swift.Optional&lt;Reise.GameScene&gt;"
+                  moduleName = "Reise"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nilsschwenkel/Documents/Workspace/Reise/Reise/GameScene.swift"
+                  timestampString = "549452793.410834"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Reise.GameScene.init(coder: __ObjC.NSCoder) -&gt; Swift.Optional&lt;Reise.GameScene&gt;"
+                  moduleName = "Reise"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nilsschwenkel/Documents/Workspace/Reise/Reise/GameScene.swift"
+                  timestampString = "549452793.412717"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "48">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

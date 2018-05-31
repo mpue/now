@@ -35,6 +35,8 @@ class AutoScrollingLayer : Layer {
         firstActions.append(SKAction.move(to: CGPoint(x: atPosition.x + (sprite?.size.width)!, y: atPosition.y), duration: TimeInterval(0)))
         firstActions.append(SKAction.move(to: CGPoint(x: atPosition.x, y: atPosition.y), duration: TimeInterval(speed)))
 
+        // TODO move one time scrall layer and use the following action to remove Layer when done: firstActions.append(SKAction.removeFromParent())
+        
         sprite?.run(SKAction.repeatForever(SKAction.sequence(firstActions)))
         
         var secondActions: [SKAction] = Array()

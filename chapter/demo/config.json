@@ -1,0 +1,29 @@
+
+{
+    "title":"demo",
+    "scenes":[
+              {
+              "layer":[
+                       {
+                       "image":"Sky.png",
+                       "speed":20,
+                       "autoScroll": true,
+                       "sound":[
+                       ]
+                       },
+                       {
+                       "image":"Hills.png",
+                       "speed":100,
+                       "sound":[
+                       ]
+                       },
+                       {
+                       "image":"Path.png",
+                       "speed":150,
+                       "sound":[
+                        ]
+                       }
+                       ]
+              }
+              ]
+}
