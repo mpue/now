@@ -24,7 +24,7 @@ class AutoScrollingLayer : Layer {
         var firstActions: [SKAction] = Array()
         
         nextSprite = sprite?.copy() as? SKSpriteNode
-        nextSprite?.position = CGPoint(x: sprite?.size.width ?? 0, y: nextSprite?.size.height ?? 0)
+        nextSprite?.position = CGPoint(x: sprite?.size.width ?? 0, y: nextSprite?.position.y ?? 0)
         
         if(nil != nextSprite) {
             on.addChild(nextSprite!)
