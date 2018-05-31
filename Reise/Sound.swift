@@ -60,13 +60,13 @@ class Sound {
         fadeIn(duration: self.fadeInDuration)
         isPlaying = true
         
-        print("play \(self.file.url)) ");
+        print("play \(self.file.url.lastPathComponent) ");
     }
     
     public func stop() {
         isPlaying = false
         fadeOut(duration: self.fadeOutDuration)
-        print("stop \(self.file.url)) ");
+        print("stop \(self.file.url.lastPathComponent) ");
     }
     
     private func fadeTo(volume: Float, duration: TimeInterval = 1.0) {
