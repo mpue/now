@@ -169,8 +169,8 @@ class Layer {
         }
         if limitMaxXPosition {
             // cut 20 points of the sprite to make sure no one see the end
-            let spriteWidth = (sprite?.size.width ?? 0) - 20
-            let spriteMaxXPosition = (sprite?.frame.maxX ?? 0) - 20
+            let spriteWidth = (sprite?.size.width ?? 0) - 10
+            let spriteMaxXPosition = (sprite?.frame.maxX ?? 0) - 10
             
             if (spriteMaxXPosition < screen.frame.maxX) && ((((spriteWidth-(screen.frame.maxX))-xStart) + position.x) < 0){
                 return false
