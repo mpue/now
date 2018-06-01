@@ -18,7 +18,7 @@ class AutoScrollingLayer : Layer {
     }
     
     override func load(on: SKScene, withSize: CGSize, atPosition: CGPoint) {
-
+        
         super.load(on: on, withSize: withSize, atPosition: atPosition)
         
         var firstActions: [SKAction] = Array()
@@ -34,7 +34,7 @@ class AutoScrollingLayer : Layer {
         firstActions.append(SKAction.move(to: CGPoint(x: atPosition.x - (sprite?.size.width)!, y: atPosition.y), duration: TimeInterval(speed)))
         firstActions.append(SKAction.move(to: CGPoint(x: atPosition.x + (sprite?.size.width)!, y: atPosition.y), duration: TimeInterval(0)))
         firstActions.append(SKAction.move(to: CGPoint(x: atPosition.x, y: atPosition.y), duration: TimeInterval(speed)))
-
+        
         // TODO move one time scrall layer and use the following action to remove Layer when done: firstActions.append(SKAction.removeFromParent())
         
         sprite?.run(SKAction.repeatForever(SKAction.sequence(firstActions)))
@@ -46,7 +46,7 @@ class AutoScrollingLayer : Layer {
         secondActions.append(SKAction.move(to: CGPoint(x: atPosition.x + (sprite?.size.width)!, y: atPosition.y), duration: TimeInterval(0)))
         nextSprite?.run(SKAction.repeatForever(SKAction.sequence(secondActions)))
         
-        isMoving = true        
+        isMoving = true
     }
     
     override func move(on: SKScene, timeSinceLastFrame: TimeInterval) {
@@ -64,7 +64,9 @@ class Layer {
     var isMoving: Bool = false
     let texture: SKTexture
     var sprite: SKSpriteNode?
-    private var nextSprite: SKSpriteNode? // TODO create AutoScrollingLayer
+    var xStart: CGFloat = 0
+    private let minXPosition: CGFloat = 0
+    
     let speed: Float
     private var sounds: [Sound] = Array()
     
@@ -84,6 +86,8 @@ class Layer {
         sprite?.position = atPosition
         sprite?.aspectFillToSize(fillSize: withSize) // Do this after you set texture
         
+        xStart = atPosition.x
+        
         if(nil != sprite) {
             // Add the sprites to the scene
             on.addChild(sprite!);
@@ -101,7 +105,7 @@ class Layer {
         
         if(isVisible) {
             if(moveLayer) {
-               move(on: on, timeSinceLastFrame: timeSinceLastFrame)
+                move(on: on, timeSinceLastFrame: timeSinceLastFrame)
             }
             playSound(audioEngine: audioEngine, output: output)
         } else {
@@ -137,24 +141,42 @@ class Layer {
         }
     }
     
-    func move(on: SKScene, timeSinceLastFrame: TimeInterval) {
+    func move(on screen: SKScene, timeSinceLastFrame: TimeInterval) {
         var newPosition: CGPoint
-        let minXPosition: CGFloat = 0
         newPosition = sprite?.position ?? CGPoint(x: 0, y: 0)
         newPosition.x -= CGFloat(speed * Float(timeSinceLastFrame))
         
-        if(!(limitMinXPosition && newPosition.x > minXPosition) && !(limitMaxXPosition && ((sprite?.frame.maxX ?? 0) + newPosition.x) < on.frame.maxX)) {
+        if(candMove(to: newPosition, on: screen)) {
             // Shift the sprite leftward based on the speed
-
+            
             sprite?.position = newPosition
             isMoving = true
         } else {
             isMoving = false
         }
-
-        if (sprite?.frame.maxX) ?? 0 < on.frame.minX {
+        
+        if (sprite?.frame.maxX) ?? 0 < screen.frame.minX {
             isVisible = false
         }
+    }
+    
+    func candMove(to position: CGPoint, on screen: SKScene) -> Bool {
+        if limitMinXPosition {
+            if position.x > minXPosition {
+                return false
+            }
+            
+        }
+        if limitMaxXPosition {
+            // cut 20 points of the sprite to make sure no one see the end
+            let spriteWidth = (sprite?.size.width ?? 0) - 20
+            let spriteMaxXPosition = (sprite?.frame.maxX ?? 0) - 20
+            
+            if (spriteMaxXPosition < screen.frame.maxX) && ((((spriteWidth-(screen.frame.maxX))-xStart) + position.x) < 0){
+                return false
+            }
+        }
+        return true
     }
     
     public func getWidth() -> CGFloat {
