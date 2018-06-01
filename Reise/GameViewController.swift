@@ -29,7 +29,7 @@ class GameViewController: UIViewController {
             print(error)
         }*/
         let parser = ChapterParser()
-        let chapterConfigFiles = ["chapter/demo/config", "chapter/parallax/config", "chapter/one/config", "chapter/two/config"]
+        let chapterConfigFiles = ["chapter/demo/config", "chapter/parallax/config", "chapter/one/config", "chapter/two/config", "chapter/three/config"]
         var chapters: [Chapter] = Array()
         
         for configFile in chapterConfigFiles {
